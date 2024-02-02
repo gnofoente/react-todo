@@ -1,27 +1,32 @@
-import { ChangeEventHandler, MouseEventHandler } from "react";
+import { ChangeEvent, ChangeEventHandler } from "react";
 import Button from '@components/Button';
 
 type TaskProps = {
   id: string,
   label: string,
   done: boolean,
-  onChange: ChangeEventHandler<HTMLInputElement>,
-  handleDelete: (id: string) => void
+  onCheck: ChangeEventHandler<HTMLInputElement>,
+  onDelete: (id: string) => void,
+  onEdit: (todoId: string, label: string) => void
 };
 
-export default function Task({ id, label, done, onChange, handleDelete} : TaskProps) {
+export default function Task(props : TaskProps) {
+  const { id, label, done, onCheck, onDelete, onEdit } = props;
+
   return (
     <li>
+      <input 
+        type="checkbox" 
+        name={id} 
+        checked={done} 
+        onChange={onCheck} 
+      /> 
+
       <label>
-        <input 
-          type="checkbox" 
-          name={id} 
-          checked={done} 
-          onChange={onChange} 
-        /> 
-        {label}
+        <input type="text" value={label} onChange={(e: ChangeEvent<HTMLInputElement>) => { onEdit(id, e.target.value)}} />
       </label>
-      <Button onClick={() => {handleDelete(id)}}>x</Button>
+
+      <Button onClick={() => {onDelete(id)}}>x</Button>
     </li>
   )
 }

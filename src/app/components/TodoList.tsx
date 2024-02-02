@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import {v4 as uuidv4} from 'uuid';
+const { v4 } = require('uuid');
+const uuidv4 = v4;
 
-import AddToDoForm from '@components/AddToDoForm';
+import AddTaskForm from '@import/app/components/AddTaskForm';
 import Task from "@components/Task";
 
 import { Task as T_Task } from '@types';
@@ -25,12 +26,12 @@ const TODOS: T_Task[] = [
   {
     id: uuidv4(),
     label: 'Press return to add',
-    done: false,
+    done: true,
   },
   {
     id: uuidv4(),
     label: 'Allow edit',
-    done: false,
+    done: true,
   },
   {
     id: uuidv4(),
@@ -61,7 +62,6 @@ const TODOS: T_Task[] = [
 
 export default function TodoList() {
   const [todos, setTodos] : [T_Task[], Function] = useState(TODOS);
-  
 
   function handleCheckboxChange(e : any) : void {
     setTodos(todos.map(item => {
@@ -80,9 +80,18 @@ export default function TodoList() {
     setTodos(todos.filter(item => item.id !== todoId));
   }
 
+  function handleEdit(todoId: string, label: string) {
+    setTodos(todos.map(item => {
+      if (item.id === todoId) {
+        item.label = label;
+      }
+      return item;
+    }));
+  }
+
   return (
     <main>
-      <AddToDoForm onAdd={handleOnAdd} />
+      <AddTaskForm onAdd={handleOnAdd} />
 
       <div>
         <ul>
@@ -92,8 +101,9 @@ export default function TodoList() {
               id={id} 
               label={label} 
               done={done} 
-              onChange={handleCheckboxChange} 
-              handleDelete={handleDelete} 
+              onCheck={handleCheckboxChange} 
+              onDelete={handleDelete}
+              onEdit={handleEdit} 
             />
           )}
         </ul>

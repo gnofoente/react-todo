@@ -1,13 +1,14 @@
 import { KeyboardEvent, useState } from "react";
-import {v4 as uuidv4} from 'uuid';
+const { v4 } = require('uuid');
+const uuidv4 = v4;
 
 import Button from "@components/Button";
 
-type AddToDoFormProps = {
+type AddTaskFormProps = {
   onAdd: Function;
 }
 
-export default function AddToDoForm({ onAdd } : AddToDoFormProps) {
+export default function AddTaskForm({ onAdd } : AddTaskFormProps) {
   const [label, setLabel] : [string, Function] = useState('');
 
   function handleInputChange(e : any) : void {
