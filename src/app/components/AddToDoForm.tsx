@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { KeyboardEvent, useState } from "react";
 import {v4 as uuidv4} from 'uuid';
 
 import Button from "@components/Button";
@@ -23,7 +23,7 @@ export default function AddToDoForm({ onAdd } : AddToDoFormProps) {
     });
   }
 
-  function handleOnKeyDown(e) {
+  function handleOnKeyDown(e: KeyboardEvent<HTMLInputElement>) {
     if (e.code !== 'Enter') return;
     handleClick();
   }
