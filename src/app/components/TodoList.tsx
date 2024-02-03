@@ -90,7 +90,7 @@ export default function TodoList() {
   }
 
   return (
-    <main>
+    <main className="text-xl w-10/12 max-w-4xl">
       <AddTaskForm onAdd={handleOnAdd} />
 
       <div>
