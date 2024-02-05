@@ -12,20 +12,20 @@ type DataStatus = 'loading' | 'error' | 'loaded';
 
 export default function TodoList() {
   const [todos, setTodos] : [T_Task[], Function] = useState([]);
-  const [dataStatus, setDataStatus] : [DataStatus, Function]  = useState('loading');
+  const [status, setStatus] : [DataStatus, Function]  = useState('loading');
 
   useEffect(() => {
     try {
       setTasks();
     } catch {
-      setDataStatus('error');
+      setStatus('error');
     }
   }, []);
 
   async function setTasks() {
     if (todos.length > 0) return;
     setTodos(await fetchTasks());
-    setDataStatus('loaded');
+    setStatus('loaded');
   }
 
   function handleCheckboxChange(e : any) : void {
@@ -54,12 +54,12 @@ export default function TodoList() {
     }));
   }
 
-  if (dataStatus === 'loading') {
+  if (status === 'loading') {
     return <Loader />
   }
 
-  if (dataStatus === 'error') {
-    return <ErrorMessage>Falhou irmão</ErrorMessage>
+  if (status === 'error') {
+    return <ErrorMessage>Something went wrong. Please contact your administrator.</ErrorMessage>
   }
 
   return (
