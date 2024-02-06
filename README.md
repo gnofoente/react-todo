@@ -1,4 +1,4 @@
-This is a simple to-do app built with React and bootstrapped with Next.js.
+This is a simple to-do app built with **React** and bootstrapped with **Next.js**.
 
 The main goal here is to constantly upgrade it as I dig deeper and depper into React concepts.
 
