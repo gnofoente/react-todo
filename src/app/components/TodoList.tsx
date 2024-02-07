@@ -38,7 +38,7 @@ export default function TodoList() {
   }
 
   function handleOnAdd(todo: T_Task) {
-    setTodos([...todos, todo]);
+    setTodos([todo, ...todos,]);
   }
 
   function handleDelete(todoId: string) {

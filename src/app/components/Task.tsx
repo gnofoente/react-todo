@@ -1,6 +1,7 @@
 import { ChangeEvent, ChangeEventHandler } from "react";
 import Button from '@components/Button';
 import Input from '@components/Input';
+import Checkbox from '@components/Checkbox';
 
 type TaskProps = {
   id: string,
@@ -17,12 +18,11 @@ export default function Task(props : TaskProps) {
   return (
     <li className="flex flex-row justify-between">
       <div className="basis-11/12 flex flex-row">
-        <Input 
-          type="checkbox" 
+        <Checkbox 
           name={id} 
           checked={done} 
           onChange={onCheck}
-          className="hover:cursor-pointer basis-4 mr-2"
+          className="flex flex-row justify-center items-center basis-4 mr-2"
         /> 
 
         <Input 

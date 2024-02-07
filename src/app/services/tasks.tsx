@@ -42,6 +42,11 @@ const TODOS: T_Task[] = [
   {
     id: uuidv4(),
     label: 'Add loading screen',
+    done: true,
+  },
+  {
+    id: uuidv4(),
+    label: 'Fix checkbox styling on multiple browsers',
     done: false,
   },
   {
@@ -58,6 +63,11 @@ const TODOS: T_Task[] = [
     id: uuidv4(),
     label: 'Drag to reorder',
     done: false,
+  },
+  {
+    id: uuidv4(),
+    label: 'Build tasks API',
+    done: false
   }
 ];
 

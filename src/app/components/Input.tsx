@@ -6,7 +6,7 @@ type InputProps = {
   checked?: boolean
   className?: string
   placeholder?: string
-  type: 'text' | 'checkbox' | 'number' | 'tel'
+  type: 'text' | 'number' | 'tel'
   onChange: ChangeEventHandler<HTMLInputElement>
 }
 
@@ -20,6 +20,6 @@ export default function Input(props: InputProps) {
     transition-colors
     hover:border-black/10
     focus:border-black/100
-    focus:outline-none ${props.className}` } 
+    focus:outline-none ${props.className}`} 
   />
 }

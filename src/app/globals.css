@@ -3,3 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.custom-checkbox::before {
+  box-shadow: inset 1em 1em black;
+}
+
+.custom-checkbox:checked::before {
+  transform: scale(2);
+}
