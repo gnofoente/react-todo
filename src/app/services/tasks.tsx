@@ -47,7 +47,7 @@ const TODOS: T_Task[] = [
   {
     id: uuidv4(),
     label: 'Fix checkbox styling on multiple browsers',
-    done: false,
+    done: true,
   },
   {
     id: uuidv4(),
