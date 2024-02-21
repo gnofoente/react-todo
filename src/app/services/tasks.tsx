@@ -56,7 +56,7 @@ const TODOS: T_Task[] = [
   },
   {
     id: uuidv4(),
-    label: 'Folders to store done items',
+    label: 'Folders',
     done: false,
   },
   {
@@ -71,10 +71,12 @@ const TODOS: T_Task[] = [
   }
 ];
 
-export function getTasks() {
-  return new Promise((resolve) => {
+export function getTasks(forceError : boolean) : Promise<T_Task[]> {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
+      if (forceError)
+        reject();
       resolve(TODOS);
     }, 2000);
-})
+  })
 }
