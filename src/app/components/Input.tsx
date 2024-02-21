@@ -8,7 +8,7 @@ type InputProps = {
   placeholder?: string;
   type: "text" | "number" | "tel";
   onChange: ChangeEventHandler<HTMLInputElement>;
-  style: {};
+  style?: {};
 };
 
 export default function Input(props: InputProps) {
@@ -25,7 +25,6 @@ export default function Input(props: InputProps) {
   ];
 
   let classNames = classNameList.join().replaceAll(",", " ");
-  // classNames += " w-full";
 
   return <input {...props} className={classNames} />;
 }

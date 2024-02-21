@@ -3,20 +3,21 @@ import { useState, useEffect } from "react";
 import AddTaskForm from "@components/AddTaskForm";
 import Task from "@components/Task";
 import Loader from "@components/Loader";
-import { getTasks } from "@import/app/services/tasks";
+import ErrorMessage from "@components/ErrorMessage";
 
+import { getTasks } from "@import/app/services/tasks";
 import { Task as T_Task } from "@types";
-import ErrorMessage from "./ErrorMessage";
 
 type DataStatus = "loading" | "error" | "loaded" | "done";
 
 export default function Main() {
+  const [user, setUser] = useState<string>("gustavo");
   const [todos, setTodos] = useState<T_Task[]>([]);
   const [status, setStatus] = useState<DataStatus>("loading");
 
   useEffect(() => {
     setTasks();
-  }, []);
+  }, [user]);
 
   async function setTasks() {
     if (todos.length > 0) return;
