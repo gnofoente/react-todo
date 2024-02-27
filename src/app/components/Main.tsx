@@ -4,16 +4,18 @@ import AddTaskForm from "@components/AddTaskForm";
 import Task from "@components/Task";
 import Loader from "@components/Loader";
 import ErrorMessage from "@components/ErrorMessage";
+import Menu from "@components/Menu";
 
 import { getTasks } from "@import/app/services/tasks";
 import { Task as T_Task } from "@types";
 
-type DataStatus = "loading" | "error" | "loaded" | "done";
+type DataStatus = "loading" | "error" | "loaded" | "done" | "pending";
 
 export default function Main() {
   const [user, setUser] = useState<string>("gustavo");
   const [todos, setTodos] = useState<T_Task[]>([]);
   const [status, setStatus] = useState<DataStatus>("loading");
+  const todosToRender = [];
 
   useEffect(() => {
     setTasks();
@@ -71,30 +73,31 @@ export default function Main() {
     );
   }
 
+  if (status === "done") {
+    todosToRender.push(...todos.filter((task) => task.done));
+  }
+
+  if (status === "loaded") {
+    todosToRender.push(...todos.sort((a, b) => a.done - b.done));
+  }
+
+  if (status === "pending") {
+    todosToRender.push(...todos.filter((task) => !task.done));
+  }
+
   return (
     <main className="flex h-96 max-h-96 w-10/12 max-w-xl flex-col items-center justify-center text-xl">
-      <div>
-        <span
-          onClick={() => {
-            setStatus("loaded");
-          }}
-        >
-          my tasks{" "}
-        </span>
-        <span
-          onClick={() => {
-            setStatus("done");
-          }}
-        >
-          done
-        </span>
-      </div>
+      <Menu
+        action={function (status: DataStatus) {
+          setStatus(status);
+        }}
+      />
 
       <AddTaskForm onAdd={handleOnAdd} />
 
       <div className="h-full w-full overflow-y-scroll">
         <ul>
-          {todos.map(({ id, label, done }) => (
+          {todosToRender.map(({ id, label, done }) => (
             <Task
               key={id}
               id={id}

@@ -17,7 +17,7 @@ export default function Input(props: InputProps) {
     "box-border",
     "border-b",
     "border-black/0",
-    "px-1",
+    "pl-1",
     "transition-colors",
     "hover:border-black/10",
     "focus:border-black/100",
